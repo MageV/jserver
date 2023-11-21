@@ -12,25 +12,19 @@ public class Main {
     public static void main(String[] args) throws Exception
     {
         ServletContextHandler context=new ServletContextHandler(ServletContextHandler.SESSIONS);
-        //context.addServlet(new ServletHolder(frontend), "/*");
+        AccountService accountService=new AccountService();
+        SignInServlet signInServlet=new SignInServlet(accountService);
+        SignUpServlet signUpServlet=new SignUpServlet(accountService);
+        context.addServlet(new ServletHolder(signInServlet),"/signin");
+        context.addServlet(new ServletHolder(signUpServlet),"/signup");
         Server server=new Server(8080);
-        server.setHandler(initServer(context));
+        server.setHandler(context);
         server.start();
         java.util.logging.Logger.getGlobal().info("Server started");
         server.join();
     }
 
-    private static HandlerList  initServer(ServletContextHandler context)
+    private static void  initServer(ServletContextHandler context)
     {
-        AccountService accountService=new AccountService();
-        UsersServlet usersServlet=new UsersServlet(accountService);
-        SessionServlet sessionServlet=new SessionServlet(accountService);
-        context.addServlet(new ServletHolder(usersServlet),"/signup");
-        context.addServlet(new ServletHolder(sessionServlet),"/signin");
-        ResourceHandler resourceHandler=new ResourceHandler();
-        resourceHandler.setResourceBase("templates");
-        HandlerList handlerList=new HandlerList();
-        handlerList.setHandlers(new Handler[]{resourceHandler,context});
-        return handlerList;
     }
 }
