@@ -11,22 +11,23 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.eclipse.jetty.version>9.3.0.M0</org.eclipse.jetty.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>11.0.15</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>11.0.15</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>11.0.15</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>
@@ -64,6 +65,17 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.4.2</version>
             <type>maven-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-servlet</artifactId>
+            <version>${org.eclipse.jetty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-server</artifactId>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
     </dependencies>
     <build>
